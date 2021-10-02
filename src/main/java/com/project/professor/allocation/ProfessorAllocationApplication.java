@@ -10,8 +10,9 @@ public class ProfessorAllocationApplication {
 		SpringApplication.run(ProfessorAllocationApplication.class, args);
 		
 		//Comentário teste para fazer um "commit" no gitHub
-		//Comentário teste para fazer o 2° "commit" no gitHub
-		//Comentário teste para fazer o 3º "commit" no gitHub
+		//Comentário teste para fazer o 2º "commit" no gitHub
+		//Comentário teste para fazer o 3° "commit" no gitHub
+		//Comentário teste para fazer o 4º "commit" no gitHub
 		
 	}
 
