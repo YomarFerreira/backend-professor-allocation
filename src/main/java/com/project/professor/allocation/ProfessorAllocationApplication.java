@@ -8,6 +8,9 @@ public class ProfessorAllocationApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProfessorAllocationApplication.class, args);
+		
+		//Comentário teste para fazer um "commit" no gitHub
+		
 	}
 
 }
