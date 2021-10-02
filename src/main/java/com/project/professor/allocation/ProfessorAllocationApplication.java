@@ -10,6 +10,7 @@ public class ProfessorAllocationApplication {
 		SpringApplication.run(ProfessorAllocationApplication.class, args);
 		
 		//Comentário teste para fazer um "commit" no gitHub
+		//Comentário teste para fazer o 2] "commit" no gitHub
 		
 	}
 
