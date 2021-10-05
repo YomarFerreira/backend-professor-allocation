@@ -50,12 +50,16 @@ public class Alllocation {
 	
 	
 	
-	public Alllocation(Long id, DayOfWeek day, Date start, Date end) {
+	public Alllocation(Long id, DayOfWeek day, Date start, Date end, Long courseId, Course course, Long professorId, Professor professor) {
 		super();
 		this.id = id;
 		this.day = day;
 		this.start = start;
 		this.end = end;
+		this.courseId = courseId;
+		this.course = course;
+		this.professorId = professorId;
+		this.professor = professor;
 	}
 	
 	
@@ -67,12 +71,23 @@ public class Alllocation {
 	public void setStart(Date start) { this.start = start; }
 	public Date getEnd() { return end; }
 	public void setEnd(Date end) { this.end = end; }
+	public Long getCourseId() { return courseId; }
+	public void setCourseId(Long courseId) { this.courseId = courseId; }
+	public Course getCourse() { return course; }
+	public void setCourse(Course course) { this.course = course; }
+	public Long getProfessorId() { return professorId; }
+	public void setProfessorId(Long professorId) { this.professorId = professorId; }
+	public Professor getProfessor() { return professor; }
+	public void setProfessor(Professor professor) { this.professor = professor; }
 
 
 	@Override
 	public String toString() {
-		return "Alllocation [id=" + id + ", day=" + day + ", start=" + start + ", end=" + end + "]";
+		return "Alllocation [id=" + id + ", day=" + day + ", start=" + start + ", end=" + end + ", courseId=" + courseId
+				+ ", course=" + course + ", professorId=" + professorId + ", professor=" + professor + "]";
 	}
+
+
 	
 	
 }
