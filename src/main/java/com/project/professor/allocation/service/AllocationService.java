@@ -1,5 +1,6 @@
 package com.project.professor.allocation.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -39,12 +40,18 @@ public class AllocationService {
 	}
 
 	private Allocation save(Allocation allocation) {
-		Allocation saveAlloc = allocRepository.save(allocation);
-		Professor professor = profesService.findById(saveAlloc.getProfessorId());
-		saveAlloc.setProfessor(professor);
-		Course course = cursService.findById(saveAlloc.getCourseId());
-		saveAlloc.setCourse(course);
-		return saveAlloc;
+		Professor professor = profesService.findById(allocation.getProfessorId());
+		Course course = cursService.findById(allocation.getCourseId());
+
+		if (!conflictTime(allocation, professor) && !errorTime(allocation)) {
+			Allocation saveAlloc = allocRepository.save(allocation);
+			saveAlloc.setProfessor(professor);
+			saveAlloc.setCourse(course);
+			return saveAlloc;
+        } else {
+			throw new RuntimeException();
+        }		
+		
 	}
 
 	public void deleteById(Long allocationId) {
@@ -76,5 +83,44 @@ public class AllocationService {
 		List<Allocation> allocationCours = allocRepository.findByCourseId(courseId);
 		return allocationCours;
 	}
+	
+	
+	private boolean conflictTime(Allocation alloc, Professor prof) { //Horário inicial ou final estiver colidindo com horário do mesmo professor
+		boolean conflictTime = false;
+	
+		List <Allocation> listAllocations = allocRepository.findByProfessorId(prof.getId());
 
+		if (!listAllocations.isEmpty()) {
+			for(int i=0; i <= listAllocations.size(); i++){
+				if ((listAllocations.get(i).getDay().equals(alloc.getDay()))) {
+					//estiver enter o horario inicia e o horario final (inclusive)
+					Date timeStartList = listAllocations.get(i).getStart();
+					Date timeEndList = listAllocations.get(i).getEnd();
+					Date timeStartNew = alloc.getStart();
+					Date timeEndNew = alloc.getEnd();
+					//((Arg1.compareTo(Arg2)>=0)) Arg1<Arg2(retorna<0) Arg1>Arg2(retorna>0) Arg1=Arg2(retorna=0)
+					if (((timeStartNew.compareTo(timeStartList))>=0 && (timeStartNew.compareTo(timeEndList))<=0) || 
+						((timeEndNew.compareTo(timeStartList))>=0 && (timeEndNew.compareTo(timeEndList))<=0)){
+						conflictTime = true;	
+						break;
+					}
+				}
+			}
+		}
+		return conflictTime;
+	}	
+	
+	
+	private boolean errorTime(Allocation alloc) { //Horário nullo ou h.inicial maior que h.final
+		boolean errorTime = false;
+		
+				Date timeStart = alloc.getStart();
+				Date timeEnd = alloc.getEnd();
+				//((Arg1.compareTo(Arg2)>=0)) Arg1<Arg2(retorna<0) Arg1>Arg2(retorna>0) Arg1=Arg2(retorna=0)
+				if (timeStart == null || timeEnd == null || timeStart.compareTo(timeEnd)>0){
+					errorTime = true;
+				}
+		return errorTime;
+	}	
+	
 }

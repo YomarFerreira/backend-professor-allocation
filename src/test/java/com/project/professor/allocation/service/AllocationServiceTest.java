@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
 import com.project.professor.allocation.entity.Allocation;
+import com.project.professor.allocation.repository.AllocationRepository;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application.properties")
@@ -20,6 +21,9 @@ public class AllocationServiceTest {
 
 	@Autowired
 	AllocationService allocService;
+
+	AllocationRepository allocRepository;
+
 
 	@Test
 	public void save() throws ParseException {
@@ -32,10 +36,11 @@ public class AllocationServiceTest {
 		saveAlloc.setCourseId(1L);
 
 		saveAlloc = allocService.create(saveAlloc);
-
+		
 		System.out.println(saveAlloc);
 	}
-
+	
+	
 	@Test
 	public void update() throws ParseException {
 		Allocation updateAlloc = new Allocation();
@@ -89,5 +94,9 @@ public class AllocationServiceTest {
 		Allocation allocations = allocService.findById(id);
 		System.out.println(allocations);
 	}
+	
+	
+	
+
 
 }
