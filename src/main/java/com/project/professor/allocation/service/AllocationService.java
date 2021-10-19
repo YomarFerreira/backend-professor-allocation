@@ -35,15 +35,16 @@ public class AllocationService {
 		if (allocRepository.existsById(allocation.getId())) {
 			Allocation updateAlloc = save(allocation);
 			return updateAlloc;
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	private Allocation save(Allocation allocation) {
-		Professor professor = profesService.findById(allocation.getProfessorId());
-		Course course = cursService.findById(allocation.getCourseId());
 
-		if (!conflictTime(allocation, professor) && !errorTime(allocation)) {
+		if (!conflictTime(allocation) && !errorTime(allocation)) {
+			Professor professor = profesService.findById(allocation.getProfessorId());
+			Course course = cursService.findById(allocation.getCourseId());
 			Allocation saveAlloc = allocRepository.save(allocation);
 			saveAlloc.setProfessor(professor);
 			saveAlloc.setCourse(course);
@@ -85,9 +86,10 @@ public class AllocationService {
 	}
 	
 	
-	private boolean conflictTime(Allocation alloc, Professor prof) { //Horário inicial ou final estiver colidindo com horário do mesmo professor
+	private boolean conflictTime(Allocation alloc) { //Horário inicial ou final estiver colidindo com horário do mesmo professor
 		boolean conflictTime = false;
 	
+		Professor prof = profesService.findById(alloc.getProfessorId());
 		List <Allocation> listAllocations = allocRepository.findByProfessorId(prof.getId());
 
 		if (!listAllocations.isEmpty()) {

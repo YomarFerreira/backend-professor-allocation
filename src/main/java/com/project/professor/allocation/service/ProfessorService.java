@@ -32,14 +32,14 @@ public class ProfessorService {
 		}
 	}
 
-	private Professor save(Professor professor) {
-		String cpfProf = professor.getCpf();
+	private Professor save(Professor professor){
 		try{
+			String cpfProf = professor.getCpf();
 			if(validarCpf(cpfProf)) {
-			professor = profRepository.save(professor);
-			Department department = departService.findById(professor.getDepartmentId());
-			professor.setDepartment(department);
-			return professor;
+				professor = profRepository.save(professor);
+				Department department = departService.findById(professor.getDepartmentId());
+				professor.setDepartment(department);
+				return professor;
 			} else {
 				return null;
 			}
