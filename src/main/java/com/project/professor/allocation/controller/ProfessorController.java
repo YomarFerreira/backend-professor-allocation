@@ -117,7 +117,7 @@ public class ProfessorController {
         @ApiResponse(code = 200, message = "OK"),
         @ApiResponse(code = 400, message = "Not Found")
     })
-    @GetMapping(path = "/{course_id}")
+    @GetMapping(path = "/{professor_id}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Professor> findById(@PathVariable(name = "professor_id") Long Id) {
 		Professor professor = professorService.findById(Id);
