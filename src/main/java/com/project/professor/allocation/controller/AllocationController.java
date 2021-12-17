@@ -41,7 +41,7 @@ public class AllocationController {
 	})
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Allocation> save(@RequestBody Allocation allocation) {
+	public ResponseEntity<Allocation> create(@RequestBody Allocation allocation) {
 		try {
 			allocation = allocationService.create(allocation);
 			return new ResponseEntity<>(allocation, HttpStatus.CREATED);

@@ -93,7 +93,7 @@ public class AllocationService {
 		List <Allocation> listAllocations = allocRepository.findByProfessorId(prof.getId());
 
 		if (!listAllocations.isEmpty()) {
-			for(int i=0; i <= listAllocations.size(); i++){
+			for(int i=0; i < listAllocations.size(); i++){
 				if ((listAllocations.get(i).getDay().equals(alloc.getDay()))) {
 					//estiver enter o horario inicia e o horario final (inclusive)
 					Date timeStartList = listAllocations.get(i).getStart();

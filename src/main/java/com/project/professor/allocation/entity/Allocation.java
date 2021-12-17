@@ -33,7 +33,7 @@ public class Allocation {
 	private Long id;
 	
 	@Enumerated(value=EnumType.STRING)
-	@Column(name= "day", nullable=false, unique=true)
+	@Column(name= "day", nullable=false, unique=false)
 	private DayOfWeek day;
 	
 	@Temporal(value=TemporalType.TIME)
