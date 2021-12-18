@@ -30,8 +30,8 @@ public class AllocationServiceTest {
 		Allocation saveAlloc = new Allocation();
 		saveAlloc.setId(null);
 		saveAlloc.setDay(DayOfWeek.WEDNESDAY);
-		saveAlloc.setStart(sdf.parse("19:00-0300"));
-		saveAlloc.setEnd(sdf.parse("20:00-0300"));
+		saveAlloc.setStartHour(sdf.parse("19:00-0300"));
+		saveAlloc.setEndHour(sdf.parse("20:00-0300"));
 		saveAlloc.setProfessorId(1L);
 		saveAlloc.setCourseId(1L);
 
@@ -46,8 +46,8 @@ public class AllocationServiceTest {
 		Allocation updateAlloc = new Allocation();
 		updateAlloc.setId(1L);
 		updateAlloc.setDay(DayOfWeek.MONDAY);
-		updateAlloc.setStart(sdf.parse("19:00-0300"));
-		updateAlloc.setEnd(sdf.parse("20:00-0300"));
+		updateAlloc.setStartHour(sdf.parse("19:00-0300"));
+		updateAlloc.setEndHour(sdf.parse("20:00-0300"));
 		updateAlloc.setProfessorId(1L);
 		updateAlloc.setCourseId(1L);
 

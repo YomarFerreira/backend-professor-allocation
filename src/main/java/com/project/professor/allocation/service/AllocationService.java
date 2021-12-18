@@ -96,10 +96,10 @@ public class AllocationService {
 			for(int i=0; i < listAllocations.size(); i++){
 				if ((listAllocations.get(i).getDay().equals(alloc.getDay()))) {
 					//estiver enter o horario inicia e o horario final (inclusive)
-					Date timeStartList = listAllocations.get(i).getStart();
-					Date timeEndList = listAllocations.get(i).getEnd();
-					Date timeStartNew = alloc.getStart();
-					Date timeEndNew = alloc.getEnd();
+					Date timeStartList = listAllocations.get(i).getStartHour();
+					Date timeEndList = listAllocations.get(i).getEndHour();
+					Date timeStartNew = alloc.getStartHour();
+					Date timeEndNew = alloc.getEndHour();
 					//((Arg1.compareTo(Arg2)>=0)) Arg1<Arg2(retorna<0) Arg1>Arg2(retorna>0) Arg1=Arg2(retorna=0)
 					if (((timeStartNew.compareTo(timeStartList))>=0 && (timeStartNew.compareTo(timeEndList))<=0) || 
 						((timeEndNew.compareTo(timeStartList))>=0 && (timeEndNew.compareTo(timeEndList))<=0)){
@@ -116,8 +116,8 @@ public class AllocationService {
 	private boolean errorTime(Allocation alloc) { //Horário nullo ou h.inicial maior que h.final
 		boolean errorTime = false;
 		
-				Date timeStart = alloc.getStart();
-				Date timeEnd = alloc.getEnd();
+				Date timeStart = alloc.getStartHour();
+				Date timeEnd = alloc.getEndHour();
 				//((Arg1.compareTo(Arg2)>=0)) Arg1<Arg2(retorna<0) Arg1>Arg2(retorna>0) Arg1=Arg2(retorna=0)
 				if (timeStart == null || timeEnd == null || timeStart.compareTo(timeEnd)>0){
 					errorTime = true;

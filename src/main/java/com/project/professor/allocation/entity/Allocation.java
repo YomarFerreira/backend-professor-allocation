@@ -37,20 +37,20 @@ public class Allocation {
 	private DayOfWeek day;
 	
 	@Temporal(value=TemporalType.TIME)
-	@Column(name= "start", nullable=false)
+	@Column(name= "startHour", nullable=false)
 	@JsonFormat(pattern="HH:mmZ")
 	@JsonSerialize(using = DateSerializer.class)
     @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
 	@ApiModelProperty(example="19:00-0300")
-	private Date start;
+	private Date startHour;
 	
 	@Temporal(value=TemporalType.TIME)
-	@Column(name= "end", nullable=false)
+	@Column(name= "endHour", nullable=false)
 	@JsonFormat(pattern="HH:mmZ")
 	@JsonSerialize(using = DateSerializer.class)
     @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
 	@ApiModelProperty(example="22:00-0300")
-	private Date end;
+	private Date endHour;
 
 	@Column(name= "course_id", nullable=false)
 	@JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
@@ -72,12 +72,12 @@ public class Allocation {
 	
 	
 	
-	public Allocation(Long id, DayOfWeek day, Date start, Date end, Long courseId, Course course, Long professorId, Professor professor) {
+	public Allocation(Long id, DayOfWeek day, Date startHour, Date endHour, Long courseId, Course course, Long professorId, Professor professor) {
 		super();
 		this.id = id;
 		this.day = day;
-		this.start = start;
-		this.end = end;
+		this.startHour = startHour;
+		this.endHour = endHour;
 		this.courseId = courseId;
 		this.course = course;
 		this.professorId = professorId;
@@ -92,10 +92,10 @@ public class Allocation {
 	public void setId(Long id) { this.id = id; }
 	public DayOfWeek getDay() {	return day;	}
 	public void setDay(DayOfWeek day) { this.day = day; }
-	public Date getStart() { return start; }
-	public void setStart(Date start) { this.start = start; }
-	public Date getEnd() { return end; }
-	public void setEnd(Date end) { this.end = end; }
+	public Date getStartHour() { return startHour; }
+	public void setStartHour(Date startHour) { this.startHour = startHour; }
+	public Date getEndHour() { return endHour; }
+	public void setEndHour(Date endHour) { this.endHour = endHour; }
 	public Long getCourseId() { return courseId; }
 	public void setCourseId(Long courseId) { this.courseId = courseId; }
 	public Course getCourse() { return course; }
@@ -108,7 +108,7 @@ public class Allocation {
 
 	@Override
 	public String toString() {
-		return "Alllocation [id=" + id + ", day=" + day + ", start=" + start + ", end=" + end + ", courseId=" + courseId
+		return "Alllocation [id=" + id + ", day=" + day + ", startHour=" + startHour + ", endHour=" + endHour + ", courseId=" + courseId
 				+ ", course=" + course + ", professorId=" + professorId + ", professor=" + professor + "]";
 	}
 

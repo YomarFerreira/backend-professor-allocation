@@ -33,8 +33,8 @@ public class AllocationRepositoryTest {
 
 	        allocation.setId(null);
 	        allocation.setDay(DayOfWeek.THURSDAY);
-	        allocation.setStart(sdf.parse("19:00-0300"));
-	        allocation.setEnd(sdf.parse("22:00-0300"));
+	        allocation.setStartHour(sdf.parse("19:00-0300"));
+	        allocation.setEndHour(sdf.parse("22:00-0300"));
 	        allocation.setProfessorId(1L);
 	        allocation.setCourseId(1L);
 
@@ -48,8 +48,8 @@ public class AllocationRepositoryTest {
 	        Allocation allocation = new Allocation();
 	        allocation.setId(1L);
 	        allocation.setDay(DayOfWeek.MONDAY);
-	        allocation.setStart(sdf.parse("19:00-0300"));
-	        allocation.setEnd(sdf.parse("20:00-0300"));
+	        allocation.setStartHour(sdf.parse("19:00-0300"));
+	        allocation.setEndHour(sdf.parse("20:00-0300"));
 	        allocation.setProfessorId(1L);
 	        allocation.setCourseId(1L);
 
